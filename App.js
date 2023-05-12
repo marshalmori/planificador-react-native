@@ -1,15 +1,25 @@
 import React from 'react';
 
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import Header from './src/components/Header';
 import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 
 const App = () => {
+  const handleNuevoPresupuesto = presupuesto => {
+    if (Number(presupuesto) > 0) {
+      console.log('Presupuesto válido');
+    } else {
+      Alert.alert('Error', 'El Presupuesto no puede ser 0 o menor', [
+        {text: 'OK'},
+      ]);
+    }
+  };
+
   return (
     <View style={styles.contenedor}>
       <View style={styles.header}>
         <Header />
-        <NuevoPresupuesto />
+        <NuevoPresupuesto handleNuevoPresupuesto={handleNuevoPresupuesto} />
       </View>
     </View>
   );
