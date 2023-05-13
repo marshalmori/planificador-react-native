@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, TextInput, Pressable, StyleSheet} from 'react-native';
 import globalStyles from '../styles';
 
-const NuevoPresupuesto = ({handleNuevoPresupuesto}) => {
-  const [presupuesto, setPresupuesto] = useState(0);
-
+const NuevoPresupuesto = ({
+  handleNuevoPresupuesto,
+  presupuesto,
+  setPresupuesto,
+}) => {
   return (
     <View style={styles.contenedor}>
       <Text style={styles.label}>Definir Presupuesto</Text>
