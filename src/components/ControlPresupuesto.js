@@ -10,19 +10,19 @@ const ControlPresupuesto = ({presupuesto}) => {
         <Image source={require('../img/grafico.jpg')} style={styles.imagen} />
       </View>
 
-      <View>
-        <Text>
-          <Text>Presupuesto: </Text>
+      <View style={styles.contenedorTexto}>
+        <Text style={styles.valor}>
+          <Text style={styles.label}>Presupuesto: </Text>
           {formatearCantidad(presupuesto)}
         </Text>
 
-        <Text>
-          <Text>Disponible: </Text>
+        <Text style={styles.valor}>
+          <Text style={styles.label}>Disponible: </Text>
           {formatearCantidad(presupuesto)}
         </Text>
 
-        <Text>
-          <Text>Gastado: </Text>
+        <Text style={styles.valor}>
+          <Text style={styles.label}>Gastado: </Text>
           {formatearCantidad(presupuesto)}
         </Text>
       </View>
@@ -40,6 +40,18 @@ const styles = StyleSheet.create({
   imagen: {
     width: 250,
     height: 250,
+  },
+  contenedorTexto: {
+    marginTop: 50,
+  },
+  valor: {
+    fontSize: 24,
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  label: {
+    fontWeight: '700',
+    color: '#3B82F6',
   },
 });
 
