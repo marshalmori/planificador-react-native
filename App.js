@@ -6,6 +6,7 @@ import {
   Alert,
   Pressable,
   Image,
+  ScrollView,
   Text,
   Modal,
 } from 'react-native';
@@ -49,20 +50,22 @@ const App = () => {
 
   return (
     <View style={styles.contenedor}>
-      <View style={styles.header}>
-        <Header />
-        {isValidPresupuesto ? (
-          <ControlPresupuesto presupuesto={presupuesto} gastos={gastos} />
-        ) : (
-          <NuevoPresupuesto
-            handleNuevoPresupuesto={handleNuevoPresupuesto}
-            presupuesto={presupuesto}
-            setPresupuesto={setPresupuesto}
-          />
-        )}
-      </View>
+      <ScrollView>
+        <View style={styles.header}>
+          <Header />
+          {isValidPresupuesto ? (
+            <ControlPresupuesto presupuesto={presupuesto} gastos={gastos} />
+          ) : (
+            <NuevoPresupuesto
+              handleNuevoPresupuesto={handleNuevoPresupuesto}
+              presupuesto={presupuesto}
+              setPresupuesto={setPresupuesto}
+            />
+          )}
+        </View>
 
-      {isValidPresupuesto && <ListadoGastos />}
+        {isValidPresupuesto && <ListadoGastos gastos={gastos} />}
+      </ScrollView>
 
       {modal && (
         <Modal
@@ -90,6 +93,7 @@ const App = () => {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#3B82F6',
+    minHeight: 400,
   },
   contenedor: {
     backgroundColor: '#F5F5F5',
@@ -99,8 +103,8 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     position: 'absolute',
-    top: 10,
-    right: 20,
+    bottom: 40,
+    right: 30,
   },
 });
 
