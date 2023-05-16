@@ -1,14 +1,24 @@
 import React, {useState} from 'react';
 
-import {View, StyleSheet, Alert, Pressable, Image, Text} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Alert,
+  Pressable,
+  Image,
+  Text,
+  Modal,
+} from 'react-native';
 import Header from './src/components/Header';
 import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 import ControlPresupuesto from './src/components/ControlPresupuesto';
+import FormularioGasto from './src/components/FormularioGasto';
 
 const App = () => {
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false);
   const [presupuesto, setPresupuesto] = useState(0);
   const [gastos, setGastos] = useState([]);
+  const [modal, setModal] = useState(false);
 
   const handleNuevoPresupuesto = presupuesto => {
     if (Number(presupuesto) > 0) {
@@ -34,8 +44,15 @@ const App = () => {
           />
         )}
       </View>
+
+      {modal && (
+        <Modal animationType="slide" visible={modal}>
+          <FormularioGasto />
+        </Modal>
+      )}
+
       {isValidPresupuesto && (
-        <Pressable>
+        <Pressable onPress={() => setModal(!modal)}>
           <Image
             style={styles.imagen}
             source={require('./src/img/nuevo-gasto.png')}
