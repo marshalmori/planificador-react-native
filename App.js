@@ -46,8 +46,13 @@ const App = () => {
       </View>
 
       {modal && (
-        <Modal animationType="slide" visible={modal}>
-          <FormularioGasto />
+        <Modal
+          animationType="slide"
+          visible={modal}
+          onRequestClose={() => {
+            setModal(!modal);
+          }}>
+          <FormularioGasto setModal={setModal} />
         </Modal>
       )}
 
