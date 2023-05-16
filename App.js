@@ -30,6 +30,14 @@ const App = () => {
     }
   };
 
+  const handleGasto = gasto => {
+    if (Object.values(gasto).includes(' ')) {
+      Alert.alert('Error', 'Todos los campos son obligatorios', [{text: 'OK'}]);
+    }
+
+    return;
+  };
+
   return (
     <View style={styles.contenedor}>
       <View style={styles.header}>
@@ -52,7 +60,7 @@ const App = () => {
           onRequestClose={() => {
             setModal(!modal);
           }}>
-          <FormularioGasto setModal={setModal} />
+          <FormularioGasto setModal={setModal} handleGasto={handleGasto} />
         </Modal>
       )}
 
