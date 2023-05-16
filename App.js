@@ -13,6 +13,7 @@ import Header from './src/components/Header';
 import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 import ControlPresupuesto from './src/components/ControlPresupuesto';
 import FormularioGasto from './src/components/FormularioGasto';
+import ListadoGastos from './src/components/ListadoGastos';
 import {generarId} from './src/helpers';
 
 const App = () => {
@@ -60,6 +61,8 @@ const App = () => {
           />
         )}
       </View>
+
+      {isValidPresupuesto && <ListadoGastos />}
 
       {modal && (
         <Modal
