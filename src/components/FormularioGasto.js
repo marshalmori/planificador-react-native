@@ -11,7 +11,7 @@ import {
 import {Picker} from '@react-native-picker/picker';
 import globalStyles from '../styles';
 
-const FormularioGasto = ({setModal, handleGasto}) => {
+const FormularioGasto = ({setModal, handleGasto, setGasto}) => {
   const [nombre, setNombre] = useState('');
   const [cantidad, setCantidad] = useState('');
   const [categoria, setCategoria] = useState('');
@@ -20,7 +20,10 @@ const FormularioGasto = ({setModal, handleGasto}) => {
     <SafeAreaView style={styles.contenedor}>
       <View>
         <Pressable
-          onLongPress={() => setModal(false)}
+          onLongPress={() => {
+            setModal(false);
+            setGasto({});
+          }}
           style={styles.btnCancelar}>
           <Text style={styles.btnCancelarTexto}>Cancelar</Text>
         </Pressable>
@@ -35,7 +38,7 @@ const FormularioGasto = ({setModal, handleGasto}) => {
             style={styles.input}
             placeholder="Nombre del gasto. ej. Comida"
             value={nombre}
-            onChange={setNombre}
+            onChangeText={setNombre}
           />
         </View>
 
@@ -45,7 +48,7 @@ const FormularioGasto = ({setModal, handleGasto}) => {
             style={styles.input}
             placeholder="Cantidad del gasto. ej. 300"
             keyboardType="numeric"
-            onChange={setCantidad}
+            onChangeText={setCantidad}
             value={cantidad}
           />
         </View>
