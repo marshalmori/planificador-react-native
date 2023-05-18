@@ -6,7 +6,6 @@ import {
   Pressable,
   TextInput,
   StyleSheet,
-  Alert,
 } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import globalStyles from '../styles';
