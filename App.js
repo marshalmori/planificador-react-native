@@ -137,13 +137,41 @@ const App = () => {
     );
   };
 
+  const resetearApp = () => {
+    Alert.alert(
+      'Deseas resetear la app?',
+      'Esto eliminará presupuesto y gastos',
+      [
+        {text: 'No', style: 'cancel'},
+        {
+          text: 'Si, Eliminar',
+          onPress: async () => {
+            try {
+              await AsyncStorage.clear();
+
+              setIsValidPresupuesto(false);
+              setPresupuesto(0);
+              setGastos([]);
+            } catch (error) {
+              console.log(error);
+            }
+          },
+        },
+      ],
+    );
+  };
+
   return (
     <View style={styles.contenedor}>
       <ScrollView>
         <View style={styles.header}>
           <Header />
           {isValidPresupuesto ? (
-            <ControlPresupuesto presupuesto={presupuesto} gastos={gastos} />
+            <ControlPresupuesto
+              presupuesto={presupuesto}
+              gastos={gastos}
+              resetearApp={resetearApp}
+            />
           ) : (
             <NuevoPresupuesto
               handleNuevoPresupuesto={handleNuevoPresupuesto}
