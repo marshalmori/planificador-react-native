@@ -60,6 +60,18 @@ const App = () => {
   }, [isValidPresupuesto]);
 
   useEffect(() => {
+    const obtenerGastosStorage = async () => {
+      try {
+        const gastosStorage = await AsyncStorage.getItem('planificador_gastos');
+        setGastos(gastosStorage ? JSON.parse(gastosStorage) : []);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    obtenerGastosStorage();
+  }, []);
+
+  useEffect(() => {
     const guardarGastosStorage = async () => {
       try {
         await AsyncStorage.setItem(
@@ -69,8 +81,8 @@ const App = () => {
       } catch (error) {
         console.log(error);
       }
-      guardarGastosStorage();
     };
+    guardarGastosStorage();
   }, [gastos]);
 
   const handleNuevoPresupuesto = presupuesto => {
