@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, TextInput, Pressable, StyleSheet} from 'react-native';
 import globalStyles from '../styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const NuevoPresupuesto = ({
   handleNuevoPresupuesto,
   presupuesto,
   setPresupuesto,
 }) => {
+  useEffect(() => {
+    const obtenerAS = async () => {
+      const valor = await AsyncStorage.getItem('prueba_as');
+      console.log('O valor obtido do AS: ', valor);
+    };
+    obtenerAS();
+  }, []);
   return (
     <View style={styles.contenedor}>
       <Text style={styles.label}>Definir Presupuesto</Text>
