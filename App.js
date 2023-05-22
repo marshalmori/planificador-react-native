@@ -29,14 +29,18 @@ const App = () => {
   const [gastosFiltrados, setGastosFiltrados] = useState([]);
 
   useEffect(() => {
-    const almacenarAS = async () => {
-      const nombre = 'Mashal';
-      await AsyncStorage.setItem('prueba_as', nombre);
-      console.log('Armazenado');
-    };
+    if (isValidPresupuesto) {
+      const guardarPresupuestoStorage = async () => {
+        try {
+          await AsyncStorage.setItem('planificador_presupuesto', presupuesto);
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
-    almacenarAS();
-  }, []);
+      guardarPresupuestoStorage();
+    }
+  }, [isValidPresupuesto]);
 
   const handleNuevoPresupuesto = presupuesto => {
     if (Number(presupuesto) > 0) {
