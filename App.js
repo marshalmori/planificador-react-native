@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
   View,
@@ -17,6 +17,7 @@ import FormularioGasto from './src/components/FormularioGasto';
 import ListadoGastos from './src/components/ListadoGastos';
 import Filtro from './src/components/Filtro';
 import {generarId} from './src/helpers';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const App = () => {
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false);
@@ -26,6 +27,16 @@ const App = () => {
   const [gasto, setGasto] = useState({});
   const [filtro, setFiltro] = useState('');
   const [gastosFiltrados, setGastosFiltrados] = useState([]);
+
+  useEffect(() => {
+    const almacenarAS = async () => {
+      const nombre = 'Mashal';
+      await AsyncStorage.setItem('prueba_as', nombre);
+      console.log('Armazenado');
+    };
+
+    almacenarAS();
+  }, []);
 
   const handleNuevoPresupuesto = presupuesto => {
     if (Number(presupuesto) > 0) {
