@@ -7,7 +7,6 @@ import {
   Pressable,
   Image,
   ScrollView,
-  Text,
   Modal,
 } from 'react-native';
 import Header from './src/components/Header';
@@ -59,6 +58,20 @@ const App = () => {
       guardarPresupuestoStorage();
     }
   }, [isValidPresupuesto]);
+
+  useEffect(() => {
+    const guardarGastosStorage = async () => {
+      try {
+        await AsyncStorage.setItem(
+          'planificador_gastos',
+          JSON.stringify(gastos),
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      guardarGastosStorage();
+    };
+  }, [gastos]);
 
   const handleNuevoPresupuesto = presupuesto => {
     if (Number(presupuesto) > 0) {
