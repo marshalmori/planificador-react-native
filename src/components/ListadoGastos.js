@@ -25,7 +25,7 @@ const ListadoGastos = ({gastos, setModal, setGasto}) => {
 
 const styles = StyleSheet.create({
   contenedor: {
-    marginTop: 70,
+    marginTop: 10,
     marginBottom: 100,
   },
   titulo: {
